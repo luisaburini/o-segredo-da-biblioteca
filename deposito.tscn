@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b1tmn7klhne4p"]
+
+[ext_resource type="Script" uid="uid://band6b0xgv7xj" path="res://deposito.gd" id="1_irpm4"]
+[ext_resource type="Texture2D" uid="uid://dn3ga841fg5c2" path="res://imgs/praia.png" id="2_irpm4"]
+
+[node name="OGuarani" type="Node2D" unique_id=2126938726]
+script = ExtResource("1_irpm4")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=656825015]
+offset_right = 1940.0
+offset_bottom = 1092.0
+texture = ExtResource("2_irpm4")

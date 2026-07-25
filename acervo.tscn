@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://djwwa50cl8lcg"]
+
+[ext_resource type="Script" uid="uid://q1bb04qwvgdd" path="res://acervo.gd" id="1_c302d"]
+[ext_resource type="Texture2D" uid="uid://c62vb00cmvoed" path="res://imgs/acervo-geral.png" id="2_57qyg"]
+[ext_resource type="Texture2D" uid="uid://d0k5rhnenaxfy" path="res://imgs/porta.png" id="3_fxe1i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_57qyg"]
+radius = 90.0
+height = 598.0
+
+[node name="Acervo" type="Node2D" unique_id=608571488]
+script = ExtResource("1_c302d")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=856115398]
+offset_right = 1935.0
+offset_bottom = 1093.0
+texture = ExtResource("2_57qyg")
+
+[node name="Saida" type="Area2D" parent="." unique_id=669214616]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saida" unique_id=1104540076]
+position = Vector2(244, 56.999996)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_57qyg")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Saida" unique_id=1901642487]
+position = Vector2(238, 60.000008)
+rotation = -0.7086037
+texture_normal = ExtResource("3_fxe1i")
+
+[connection signal="body_entered" from="Saida" to="." method="_on_saida_body_entered"]
+[connection signal="body_exited" from="Saida" to="." method="_on_saida_body_exited"]
+[connection signal="pressed" from="Saida/TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]

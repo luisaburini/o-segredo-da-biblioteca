@@ -1,0 +1,90 @@
+extends CharacterBody2D
+
+const SPEED = 200.0
+const JUMP_VELOCITY = 100.0
+var target_position = position
+var clicked_position = position
+
+var formas = [
+	"andorinha",
+	"bicho_seda",
+	"arara",
+]
+
+var current_forma = 0
+signal limite_direito
+signal limite_esquerdo
+signal is_idle
+var walking = false
+var started = false
+
+func idle():
+	return "idle_" + formas[current_forma%len(formas)]
+
+func animation():
+	return "walk_" + formas[current_forma%len(formas)]
+
+func _physics_process(delta):
+	if started:
+		if position.distance_to(clicked_position) > 2:
+			target_position = (clicked_position - position).normalized()
+			velocity = target_position * SPEED
+			$AnimatedSprite2D.animation = animation()
+			$AnimatedSprite2D.flip_h = velocity.x < 0
+			walking = true
+			$AnimatedSprite2D.flip_v = false
+			$AnimatedSprite2D.play()
+			move_and_slide()
+			for i in get_slide_collision_count():
+				walk_to(position)
+		else:
+			walking = false
+			$AnimatedSprite2D.animation = idle()
+			$AnimatedSprite2D.play()
+			is_idle.emit()
+
+		show()
+	
+func start(pos):
+	print("Player start")
+	started = true 
+	go_to(pos)
+	$AnimatedSprite2D.animation = idle()
+	$AnimatedSprite2D.flip_h = false
+	$AnimatedSprite2D.play()
+	is_idle.emit()
+	show()
+			
+func end():
+	started = false
+	hide()
+			
+func _ready():
+	pass
+
+func _on_main_reset_pos_direito(pos):
+	go_to(pos)
+
+func _on_main_reset_pos_esquerdo(pos):
+	go_to(pos)
+
+func is_walking():
+	return walking
+
+func walk_to(pos):
+	clicked_position.x = pos.x
+	clicked_position.y = pos.y
+
+func go_to(pos):
+	target_position.x = pos.x
+	target_position.y = pos.y
+	
+	clicked_position.x = pos.x
+	clicked_position.y = pos.y
+	
+	position.x = pos.x 
+	position.y = pos.y
+	
+	velocity = Vector2(0,0)
+	walking = false		
+	

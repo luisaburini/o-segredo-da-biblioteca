@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://d00ofla5wrcs8"]
+
+[ext_resource type="Script" uid="uid://b6tcv0darme0y" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://c2h7a5wqifgqc" path="res://imgs/01 - Logos.jpg" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cx0vl6n5k35c" path="res://player.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://d248i3wi54bw5" path="res://jardim.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://b1tmn7klhne4p" path="res://deposito.tscn" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://djwwa50cl8lcg" path="res://acervo.tscn" id="6_272bh"]
+[ext_resource type="Texture2D" uid="uid://dhdsh17e5qsl7" path="res://imgs/indicator.png" id="7_272bh"]
+[ext_resource type="AudioStream" uid="uid://bcc6m2am5dx3a" path="res://sounds/trilha-background.mp3" id="8_5vw27"]
+
+[node name="Main" type="Node2D" unique_id=921268233]
+script = ExtResource("1_ig7tw")
+
+[node name="Timer" type="Timer" parent="." unique_id=1543237705]
+
+[node name="Deposito" parent="." unique_id=2126938726 instance=ExtResource("5_7mycd")]
+
+[node name="Acervo" parent="." unique_id=608571488 instance=ExtResource("6_272bh")]
+
+[node name="Jardim" parent="." unique_id=284656653 instance=ExtResource("4_1bvp3")]
+
+[node name="Indicator" type="TextureRect" parent="." unique_id=1518044127]
+offset_top = -1.0
+offset_right = 100.0
+offset_bottom = 99.0
+texture = ExtResource("7_272bh")
+
+[node name="Player" parent="." unique_id=396187241 instance=ExtResource("3_h2yge")]
+position = Vector2(801, 947)
+
+[node name="Logos" type="TextureRect" parent="." unique_id=858851695]
+offset_right = 1929.0
+offset_bottom = 1080.0
+texture = ExtResource("2_0xm2m")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=928754173]
+stream = ExtResource("8_5vw27")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="leave" from="Acervo" to="." method="_on_acervo_leave"]
+[connection signal="leave" from="Jardim" to="." method="_on_jardim_leave"]
+[connection signal="limite_direito" from="Player" to="." method="_on_player_limite_direito"]
+[connection signal="limite_esquerdo" from="Player" to="." method="_on_player_limite_esquerdo"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

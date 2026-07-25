@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c5jmu80smjj6h"]
+
+[ext_resource type="Script" uid="uid://dnl8dkg6nwhcw" path="res://reachable_object.gd" id="1_qvoei"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2q22l"]
+
+[node name="ReachableObject" type="Node2D" unique_id=398789023]
+script = ExtResource("1_qvoei")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1335165528]
+shape = SubResource("CapsuleShape2D_2q22l")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="." unique_id=1766202833]

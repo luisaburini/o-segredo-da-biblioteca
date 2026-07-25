@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://cx0vl6n5k35c"]
+
+[ext_resource type="Script" uid="uid://b8t5q0wob8p7j" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://fxq12g0ui42v" path="res://imgs/andorinha-parada.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://xpfos0hgliqo" path="res://imgs/andorinha-voando.png" id="3_hqtel"]
+[ext_resource type="Texture2D" uid="uid://bs2v2uhagifud" path="res://imgs/arara-idle.png" id="4_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://b1c4slenfm6t" path="res://imgs/bicho-seda-idle.png" id="4_sweqy"]
+[ext_resource type="Texture2D" uid="uid://bkvcb4y6hnchy" path="res://imgs/bicho-seda-walking.png" id="5_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://btbfpt7o8vl6a" path="res://imgs/arara-voando.png" id="5_dw050"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2q22l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i3pqv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hqtel")
+}],
+"loop": 1,
+"name": &"down_andorinha",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1jxqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dw050")
+}],
+"loop": 1,
+"name": &"down_arara",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_sweqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2hs0m")
+}],
+"loop": 1,
+"name": &"down_bicho_seda",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i3pqv")
+}],
+"loop": 1,
+"name": &"idle_andorinha",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1jxqw")
+}],
+"loop": 1,
+"name": &"idle_arara",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_sweqy")
+}],
+"loop": 1,
+"name": &"idle_bicho_seda",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i3pqv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hqtel")
+}],
+"loop": 1,
+"name": &"up_andorinha",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1jxqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dw050")
+}],
+"loop": 1,
+"name": &"up_arara",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_sweqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2hs0m")
+}],
+"loop": 1,
+"name": &"up_bicho_seda",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i3pqv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hqtel")
+}],
+"loop": 1,
+"name": &"walk_andorinha",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1jxqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dw050")
+}],
+"loop": 1,
+"name": &"walk_arara",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_sweqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2hs0m")
+}],
+"loop": 1,
+"name": &"walk_bicho_seda",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
+radius = 15.0
+height = 118.40603
+
+[node name="Player" type="CharacterBody2D" unique_id=445211739]
+script = ExtResource("1_4flbx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1631806370]
+position = Vector2(-29.999996, 1.0000019)
+scale = Vector2(0.35961965, 0.31040263)
+sprite_frames = SubResource("SpriteFrames_2q22l")
+animation = &"walk_arara"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1978778778]
+position = Vector2(0.6427876, -0.76604444)
+rotation = 0.6981317
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CapsuleShape2D_4flbx")
